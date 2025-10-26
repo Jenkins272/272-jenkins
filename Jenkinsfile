@@ -3,7 +3,8 @@ pipeline {
     
     environment {
         // Define environment variables for the AL project
-        AL_COMPILER_PATH = 'C:\\Program Files (x86)\\Microsoft Dynamics 365 Business Central\\AL Development Environment'
+        // This can be overridden in Jenkins configuration or passed as parameters
+        AL_COMPILER_PATH = "${env.AL_COMPILER_PATH ?: 'alc.exe'}"
     }
     
     stages {
@@ -50,10 +51,7 @@ pipeline {
             steps {
                 echo 'Archiving build artifacts...'
                 // Archive the generated .app file
-                script {
-                    echo 'Archiving .app files'
-                    // archiveArtifacts artifacts: '**/*.app', allowEmptyArchive: true
-                }
+                archiveArtifacts artifacts: '**/*.app', allowEmptyArchive: true, fingerprint: true
             }
         }
         
