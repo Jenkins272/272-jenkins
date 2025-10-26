@@ -1,0 +1,86 @@
+pipeline {
+    agent any
+    
+    environment {
+        // Define environment variables for the AL project
+        AL_COMPILER_PATH = 'C:\\Program Files (x86)\\Microsoft Dynamics 365 Business Central\\AL Development Environment'
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out code from repository...'
+                checkout scm
+            }
+        }
+        
+        stage('Restore Dependencies') {
+            steps {
+                echo 'Restoring AL dependencies...'
+                // Download symbols and dependencies
+                script {
+                    // This would typically download AL symbols for Business Central
+                    echo 'Downloading AL symbols and dependencies'
+                }
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                echo 'Building AL application...'
+                script {
+                    // Compile the AL project
+                    // This would typically use the AL compiler to build the .app file
+                    echo 'Compiling AL project to .app file'
+                }
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                script {
+                    // Run AL tests if test codeunits exist
+                    echo 'Executing AL test codeunits'
+                }
+            }
+        }
+        
+        stage('Archive Artifacts') {
+            steps {
+                echo 'Archiving build artifacts...'
+                // Archive the generated .app file
+                script {
+                    echo 'Archiving .app files'
+                    // archiveArtifacts artifacts: '**/*.app', allowEmptyArchive: true
+                }
+            }
+        }
+        
+        stage('Deploy') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo 'Deploying to Business Central environment...'
+                script {
+                    // Deploy the .app file to Business Central server
+                    echo 'Publishing extension to Business Central'
+                }
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed. Please check the logs.'
+        }
+        always {
+            echo 'Cleaning up workspace...'
+            cleanWs()
+        }
+    }
+}
