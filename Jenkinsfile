@@ -3,7 +3,9 @@ pipeline {
     
     environment {
         // Define environment variables for the AL project
-        // This can be overridden in Jenkins configuration or passed as parameters
+        // AL_COMPILER_PATH should be configured in Jenkins global properties or passed as a parameter
+        // Example: 'C:\Program Files (x86)\Microsoft Dynamics 365 Business Central\AL Development Environment\alc.exe'
+        // or ensure 'alc.exe' is in the system PATH
         AL_COMPILER_PATH = "${env.AL_COMPILER_PATH ?: 'alc.exe'}"
     }
     
