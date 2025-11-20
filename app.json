@@ -1,0 +1,32 @@
+{
+  "id": "272a1234-5678-9abc-def0-123456789abc",
+  "name": "272-jenkins",
+  "publisher": "Jenkins272",
+  "version": "1.0.0.0",
+  "brief": "Business Central AL Extension",
+  "description": "Business Central AL Extension for 272-jenkins",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "22.0.0.0",
+  "idRanges": [
+    {
+      "from": 50100,
+      "to": 50149
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": false,
+    "includeSourceInSymbolFile": false
+  },
+  "runtime": "11.0",
+  "features": [
+    "NoImplicitWith"
+  ]
+}
